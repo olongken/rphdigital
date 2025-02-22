@@ -25,9 +25,9 @@
         
         <label>Tajuk Pengajaran:</label>
         <select id="tajuk">
-            <option value="Pengenalan Jenis-jenis Lukisan">Pengenalan Jenis-jenis Lukisan</option>
-            <option value="Analisis Karya Seni Visual">Analisis Karya Seni Visual</option>
-            <option value="Prinsip Rekabentuk dalam Seni">Prinsip Rekabentuk dalam Seni</option>
+            <option value="Sejarah Seni dan Pengaruhnya">Sejarah Seni dan Pengaruhnya</option>
+            <option value="Prinsip Reka Bentuk dan Estetika">Prinsip Reka Bentuk dan Estetika</option>
+            <option value="Teknik dan Medium dalam Seni Visual">Teknik dan Medium dalam Seni Visual</option>
         </select>
         
         <label>Objektif Pembelajaran:</label>
@@ -40,21 +40,16 @@
         <textarea id="refleksi" rows="3"></textarea>
         
         <button type="submit">Simpan RPH</button>
-        <button type="button" onclick="exportToPDF()">Muat Turun PDF</button>
+        <button type="button" onclick="exportToWord()">Muat Turun Word</button>
     </form>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <script>
         document.getElementById('rphForm').addEventListener('submit', function(event) {
             event.preventDefault();
             alert('RPH berjaya disimpan!');
         });
         
-        function exportToPDF() {
-            const { jsPDF } = window.jspdf;
-            let doc = new jsPDF();
-            
+        function exportToWord() {
             let namaGuru = document.getElementById('namaGuru').value;
             let namaKelas = document.getElementById('namaKelas').value;
             let tarikh = document.getElementById('tarikh').value;
@@ -63,22 +58,22 @@
             let aktiviti = document.getElementById('aktiviti').value;
             let refleksi = document.getElementById('refleksi').value;
             
-            doc.text("Rancangan Pengajaran Harian (RPH)", 10, 10);
-            doc.autoTable({
-                startY: 20,
-                head: [['Maklumat', 'Perincian']],
-                body: [
-                    ['Nama Guru', namaGuru],
-                    ['Nama Kelas', namaKelas],
-                    ['Tarikh', tarikh],
-                    ['Tajuk', tajuk],
-                    ['Objektif', objektif],
-                    ['Aktiviti', aktiviti],
-                    ['Refleksi', refleksi]
-                ]
-            });
+            let content = `\nRancangan Pengajaran Harian (RPH)\n\n` +
+                          `Nama Guru: ${namaGuru}\n` +
+                          `Nama Kelas: ${namaKelas}\n` +
+                          `Tarikh: ${tarikh}\n` +
+                          `Tajuk: ${tajuk}\n\n` +
+                          `Objektif Pembelajaran:\n${objektif}\n\n` +
+                          `Aktiviti Pembelajaran:\n${aktiviti}\n\n` +
+                          `Refleksi Pengajaran:\n${refleksi}\n`;
             
-            doc.save('RPH_Seni_Visual.pdf');
+            let blob = new Blob([content], { type: 'application/msword' });
+            let link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'RPH_Seni_Visual.doc';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     </script>
 </body>
