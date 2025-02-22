@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-    <h1>Platform RPH Digital - Seni Visual STPM</h1>
+    <h1>Platform RPH Digital - Seni Visual STPM (Penggal 2)</h1>
     <form id="rphForm">
         <label>Nama Guru:</label>
         <input type="text" id="namaGuru" required>
@@ -25,9 +25,12 @@
         
         <label>Tajuk Pengajaran:</label>
         <select id="tajuk">
-            <option value="Apresiasi Seni Visual">Apresiasi Seni Visual</option>
-            <option value="Lukisan Pengkaryaan dan Perekaan">Lukisan Pengkaryaan dan Perekaan</option>
-            <option value="Projek Kajian Seni Visual">Projek Kajian Seni Visual</option>
+            <option value="Pengenalan Jenis-jenis Lukisan">Pengenalan Jenis-jenis Lukisan</option>
+            <option value="Kemahiran Asas Lukisan">Kemahiran Asas Lukisan</option>
+            <option value="Pengamatan - Satu Objek & Antara Objek">Pengamatan - Satu Objek & Antara Objek</option>
+            <option value="Penggubahan Lukisan Kajian Sejadi dan Buatan Manusia">Penggubahan Lukisan Kajian Sejadi dan Buatan Manusia</option>
+            <option value="Lukisan Teknikal">Lukisan Teknikal</option>
+            <option value="Ilustrasi Penerbitan dan Industri">Ilustrasi Penerbitan dan Industri</option>
         </select>
         
         <label>Objektif Pembelajaran:</label>
@@ -78,9 +81,9 @@
         
         function generateSuggestion(field) {
             let suggestions = {
-                objektif: "1. Pelajar dapat memahami konsep asas tajuk.\n2. Pelajar dapat mengaplikasikan teknik dalam penghasilan karya.",
-                aktiviti: "1. Penerangan teori oleh guru.\n2. Demonstrasi teknik oleh guru.\n3. Pelajar menjalankan latihan amali.",
-                refleksi: "1. Pelajar menunjukkan pemahaman yang baik dalam aktiviti.\n2. Beberapa pelajar memerlukan bimbingan tambahan."
+                objektif: "1. Pelajar dapat mengenal pasti dan memahami asas tajuk yang diajar.\n2. Pelajar dapat mengaplikasikan teknik dan kemahiran dalam penghasilan lukisan.",
+                aktiviti: "1. Penerangan konsep dan teori oleh guru.\n2. Demonstrasi teknik oleh guru.\n3. Pelajar menjalankan latihan amali berdasarkan tajuk yang dipilih.",
+                refleksi: "1. Pelajar menunjukkan pemahaman yang baik dalam aktiviti.\n2. Beberapa pelajar memerlukan bimbingan tambahan untuk menguasai teknik tertentu."
             };
             document.getElementById(field).value = suggestions[field];
         }
