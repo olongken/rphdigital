@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-    <h1> RPH Digital - Seni Visual STPM (Penggal 2)</h1>
+    <h1>RPH Digital - Seni Visual STPM (Penggal 2)</h1>
     <form id="rphForm">
         <label>Nama Guru:</label>
         <input type="text" id="namaGuru" required>
