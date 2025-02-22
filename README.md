@@ -25,11 +25,9 @@
         
         <label>Tajuk Pengajaran:</label>
         <select id="tajuk">
-            <option value="Pengenalan Seni dan Budaya">Pengenalan Seni dan Budaya</option>
-            <option value="Prinsip Reka Bentuk">Prinsip Reka Bentuk</option>
-            <option value="Teknik Lukisan dan Catan">Teknik Lukisan dan Catan</option>
-            <option value="Seni Cetakan dan Arca">Seni Cetakan dan Arca</option>
-            <option value="Reka Bentuk Grafik dan Digital">Reka Bentuk Grafik dan Digital</option>
+            <option value="Pengenalan Jenis-jenis Lukisan">Pengenalan Jenis-jenis Lukisan</option>
+            <option value="Analisis Karya Seni Visual">Analisis Karya Seni Visual</option>
+            <option value="Prinsip Rekabentuk dalam Seni">Prinsip Rekabentuk dalam Seni</option>
         </select>
         
         <label>Objektif Pembelajaran:</label>
@@ -46,7 +44,7 @@
     </form>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <script>
         document.getElementById('rphForm').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -66,7 +64,6 @@
             let refleksi = document.getElementById('refleksi').value;
             
             doc.text("Rancangan Pengajaran Harian (RPH)", 10, 10);
-            
             doc.autoTable({
                 startY: 20,
                 head: [['Maklumat', 'Perincian']],
@@ -75,11 +72,10 @@
                     ['Nama Kelas', namaKelas],
                     ['Tarikh', tarikh],
                     ['Tajuk', tajuk],
-                    ['Objektif Pembelajaran', objektif],
-                    ['Aktiviti Pembelajaran', aktiviti],
-                    ['Refleksi Pengajaran', refleksi]
-                ],
-                theme: 'grid'
+                    ['Objektif', objektif],
+                    ['Aktiviti', aktiviti],
+                    ['Refleksi', refleksi]
+                ]
             });
             
             doc.save('RPH_Seni_Visual.pdf');
