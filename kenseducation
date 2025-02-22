@@ -25,60 +25,65 @@
         
         <label>Tajuk Pengajaran:</label>
         <select id="tajuk">
-            <option value="Pengenalan Jenis-jenis Lukisan">Pengenalan Jenis-jenis Lukisan</option>
-            <option value="Analisis Karya Seni Visual">Analisis Karya Seni Visual</option>
-            <option value="Prinsip Rekabentuk dalam Seni">Prinsip Rekabentuk dalam Seni</option>
+            <option value="Pengenalan jenis-jenis lukisan">Pengenalan jenis-jenis lukisan</option>
+            <option value="Media dan teknik asas lukisan">Media dan teknik asas lukisan</option>
+            <option value="Pengamatan satu objek">Pengamatan satu objek</option>
+            <option value="Pengamatan antara objek">Pengamatan antara objek</option>
+            <option value="Lukisan kajian sejadi dan buatan manusia">Lukisan kajian sejadi dan buatan manusia</option>
+            <option value="Lukisan teknikal">Lukisan teknikal</option>
+            <option value="Ilustrasi penerbitan dan industri">Ilustrasi penerbitan dan industri</option>
         </select>
         
         <label>Objektif Pembelajaran:</label>
         <textarea id="objektif" rows="3" required></textarea>
+        <button type="button" onclick="dapatkanCadangan('objektif')">Cadangan ChatGPT</button>
         
         <label>Aktiviti Pembelajaran:</label>
         <textarea id="aktiviti" rows="3" required></textarea>
+        <button type="button" onclick="dapatkanCadangan('aktiviti')">Cadangan ChatGPT</button>
         
         <label>Refleksi Pengajaran:</label>
         <textarea id="refleksi" rows="3"></textarea>
+        <button type="button" onclick="dapatkanCadangan('refleksi')">Cadangan ChatGPT</button>
         
         <button type="submit">Simpan RPH</button>
-        <button type="button" onclick="exportToPDF()">Muat Turun PDF</button>
+        <button type="button" onclick="exportToWord()">Muat Turun Word</button>
     </form>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <script>
-        document.getElementById('rphForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            alert('RPH berjaya disimpan!');
-        });
+        function dapatkanCadangan(id) {
+            const contohCadangan = {
+                "objektif": "1. Pelajar dapat mengenal pasti dan memahami asas tajuk yang diajar.\n2. Pelajar dapat mengaplikasikan teknik dan kemahiran dalam penghasilan karya seni.",
+                "aktiviti": "1. Penerangan konsep dan teori oleh guru.\n2. Demonstrasi teknik oleh guru.\n3. Latihan amali oleh pelajar.",
+                "refleksi": "1. Pelajar memahami dan dapat melaksanakan aktiviti dengan baik.\n2. Beberapa pelajar memerlukan bimbingan tambahan."
+            };
+            document.getElementById(id).value = contohCadangan[id];
+        }
         
-        function exportToPDF() {
-            const { jsPDF } = window.jspdf;
-            let doc = new jsPDF();
+        function exportToWord() {
+            const namaGuru = document.getElementById('namaGuru').value;
+            const namaKelas = document.getElementById('namaKelas').value;
+            const tarikh = document.getElementById('tarikh').value;
+            const tajuk = document.getElementById('tajuk').value;
+            const objektif = document.getElementById('objektif').value;
+            const aktiviti = document.getElementById('aktiviti').value;
+            const refleksi = document.getElementById('refleksi').value;
             
-            let namaGuru = document.getElementById('namaGuru').value;
-            let namaKelas = document.getElementById('namaKelas').value;
-            let tarikh = document.getElementById('tarikh').value;
-            let tajuk = document.getElementById('tajuk').value;
-            let objektif = document.getElementById('objektif').value;
-            let aktiviti = document.getElementById('aktiviti').value;
-            let refleksi = document.getElementById('refleksi').value;
+            let content = `\nRancangan Pengajaran Harian (RPH)\n\n` +
+                          `Nama Guru: ${namaGuru}\nNama Kelas: ${namaKelas}\nTarikh: ${tarikh}\nTajuk: ${tajuk}\n\n` +
+                          `| Kategori                | Kandungan |\n` +
+                          `|------------------------|------------------------------------------------|\n` +
+                          `| **Objektif**           | ${objektif.replace(/\n/g, ' ')} |\n` +
+                          `| **Aktiviti**           | ${aktiviti.replace(/\n/g, ' ')} |\n` +
+                          `| **Refleksi**           | ${refleksi.replace(/\n/g, ' ')} |\n`;
             
-            doc.text("Rancangan Pengajaran Harian (RPH)", 10, 10);
-            doc.autoTable({
-                startY: 20,
-                head: [['Maklumat', 'Perincian']],
-                body: [
-                    ['Nama Guru', namaGuru],
-                    ['Nama Kelas', namaKelas],
-                    ['Tarikh', tarikh],
-                    ['Tajuk', tajuk],
-                    ['Objektif', objektif],
-                    ['Aktiviti', aktiviti],
-                    ['Refleksi', refleksi]
-                ]
-            });
-            
-            doc.save('RPH_Seni_Visual.pdf');
+            const blob = new Blob([content], { type: 'application/msword' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'RPH_Seni_Visual.doc';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     </script>
 </body>
