@@ -23,13 +23,19 @@
         <label>Tarikh:</label>
         <input type="date" id="tarikh" required>
         
+        <label>Masa Pembelajaran:</label>
+        <select id="masaPembelajaran">
+            <option value="1 jam">1 jam</option>
+            <option value="2 jam">2 jam</option>
+        </select>
+        
         <label>Tajuk Pengajaran:</label>
         <select id="tajuk">
             <option value="Pengenalan jenis-jenis lukisan">Pengenalan jenis-jenis lukisan</option>
             <option value="Media dan teknik asas lukisan">Media dan teknik asas lukisan</option>
             <option value="Pengamatan satu objek">Pengamatan satu objek</option>
             <option value="Pengamatan antara objek">Pengamatan antara objek</option>
-            <option value="Lukisan kajian sejadi dan buatan manusia">Lukisan kajian sejadi dan buatan manusia</option>
+            <option value="Lukisan kajian jejadi dan buatan manusia">Lukisan kajian jejadi dan buatan manusia</option>
             <option value="Lukisan teknikal">Lukisan teknikal</option>
             <option value="Ilustrasi penerbitan dan industri">Ilustrasi penerbitan dan industri</option>
         </select>
@@ -54,7 +60,7 @@
         function dapatkanCadangan(id) {
             const contohCadangan = {
                 "objektif": "1. Pelajar dapat mengenal pasti dan memahami asas tajuk yang diajar.\n2. Pelajar dapat mengaplikasikan teknik dan kemahiran dalam penghasilan karya seni.",
-                "aktiviti": "1. Penerangan konsep dan teori oleh guru.\n2. Demonstrasi teknik oleh guru.\n3. Latihan amali oleh pelajar.",
+                "aktiviti": "1. Penerangan konsep dan teori oleh guru.\n2. Demonstrasi teknik oleh guru.\n3. Latihan amali oleh pelajar.\n4. Perbincangan hasil kerja dalam kumpulan.\n5. Kajian visual melalui contoh karya seni.\n6. Penilaian kendiri dan rakan sebaya.\n7. Pembentangan hasil kerja pelajar.",
                 "refleksi": "1. Pelajar memahami dan dapat melaksanakan aktiviti dengan baik.\n2. Beberapa pelajar memerlukan bimbingan tambahan."
             };
             document.getElementById(id).value = contohCadangan[id];
@@ -64,13 +70,14 @@
             const namaGuru = document.getElementById('namaGuru').value;
             const namaKelas = document.getElementById('namaKelas').value;
             const tarikh = document.getElementById('tarikh').value;
+            const masaPembelajaran = document.getElementById('masaPembelajaran').value;
             const tajuk = document.getElementById('tajuk').value;
             const objektif = document.getElementById('objektif').value;
             const aktiviti = document.getElementById('aktiviti').value;
             const refleksi = document.getElementById('refleksi').value;
             
             let content = `\nRancangan Pengajaran Harian (RPH)\n\n` +
-                          `Nama Guru: ${namaGuru}\nNama Kelas: ${namaKelas}\nTarikh: ${tarikh}\nTajuk: ${tajuk}\n\n` +
+                          `Nama Guru: ${namaGuru}\nNama Kelas: ${namaKelas}\nTarikh: ${tarikh}\nMasa Pembelajaran: ${masaPembelajaran}\nTajuk: ${tajuk}\n\n` +
                           `| Kategori                | Kandungan |\n` +
                           `|------------------------|------------------------------------------------|\n` +
                           `| **Objektif**           | ${objektif.replace(/\n/g, ' ')} |\n` +
